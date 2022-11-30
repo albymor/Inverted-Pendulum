@@ -120,11 +120,17 @@ int main(int argc,char* argv[])
 
   if (argc < 2)
   {
-    std::cout << "Usage: ./main <ip>" << std::endl;
+    std::cout << "Usage: ./main <ip> [running_time]" << std::endl;
     return 1;
   }
 
-  
+  int running_time = 0;
+  if (argc == 3)
+  {
+    running_time = atoi(argv[2]);
+  }
+
+
   sf::RenderWindow window(sf::VideoMode(640, 480), "Inverted Pendulum");
 
   // Set initial conditions
@@ -216,7 +222,7 @@ int main(int argc,char* argv[])
   float last_update = -1.0F;
   double u = 0;
 
-  while (window.isOpen())
+  while (window.isOpen() && running)
   {
     sf::Event event;
     while (window.pollEvent(event))
@@ -224,11 +230,7 @@ int main(int argc,char* argv[])
       switch (event.type)
       {
       case sf::Event::Closed:
-        window.close();
-        close(fd);
         running = 0;
-        std::cout << "Joining" << std::endl;
-        t1.join();
         break;
       }
     }
@@ -240,6 +242,9 @@ int main(int argc,char* argv[])
     text.setString("Time   " + msg.substr(0, msg.find('.') + 2));
     const std::string action = pid ? "Action PID" : "Action LQR";
     type.setString(action);
+
+
+    if(running_time && time > (running_time)) running = 0;
 
     if (time - last_update > 0.01F)
     {
@@ -291,6 +296,12 @@ int main(int argc,char* argv[])
     window.draw(type);
     window.display();
   }
+
+  if (window.isOpen()) window.close();
+  close(fd);
+  running = 0;
+  std::cout << "Joining" << std::endl;
+  t1.join();
   Export("data.csv", {"time", "position", "angle"}, data);
 
   return 0;
