@@ -41,6 +41,8 @@ class InvertedPendulum {
    */
   Eigen::VectorXd GetState() const;
 
+  void SetState(Eigen::VectorXd);
+
   /**
    * Linearizes the system around the equilibrium point (theta -> 0)
    */

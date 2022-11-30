@@ -59,6 +59,8 @@ void InvertedPendulum::Update(double time, double u) {
 
 Eigen::VectorXd InvertedPendulum::GetState() const { return x_; }
 
+void InvertedPendulum::SetState(Eigen::VectorXd x) { x_ = x; }
+
 void InvertedPendulum::Linearize() {
   const double mu = M_t_ * J_t_ - std::pow((m_ * l_), 2);
 

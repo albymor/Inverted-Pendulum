@@ -30,7 +30,7 @@ int main() {
   }
 
   // Create Plot object
-  sciplot::Plot plot;
+  sciplot::Plot2D plot;
 
   // Set color palette
   plot.palette("set2");
@@ -38,8 +38,13 @@ int main() {
   // Draw theta over the simulation time
   plot.drawCurve(time, theta).label("theta(t)").lineWidth(4);
 
-  // Show the plot in a pop-up window
-  plot.show();
+  // Create figure to hold plot
+    sciplot::Figure fig = {{plot}};
+    // Create canvas to hold figure
+    sciplot::Canvas canvas = {{fig}};
+
+    // Show the plot in a pop-up window
+    canvas.show();
 
   // Export data to file
   Export("data.csv", {"time", "position", "angle"}, data);
