@@ -39,3 +39,8 @@ target_link_libraries(cartpole source sfml-graphics sfml-window sfml-system ${CM
 # Add executable to run examples
 add_executable(example examples/lqr_design.cpp)
 target_link_libraries(example source)
+
+
+# Add executable to run the remote controller
+add_executable(remote_controller remote_controller/main.cpp)
+target_link_libraries(remote_controller source)
