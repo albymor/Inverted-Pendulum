@@ -115,7 +115,7 @@ int udpReceive()
   return 0;
 }
 
-int main(int argc,char* argv[])
+int main(int argc, char *argv[])
 {
 
   if (argc < 2)
@@ -129,7 +129,6 @@ int main(int argc,char* argv[])
   {
     running_time = atoi(argv[2]);
   }
-
 
   sf::RenderWindow window(sf::VideoMode(640, 480), "Inverted Pendulum");
 
@@ -243,8 +242,8 @@ int main(int argc,char* argv[])
     const std::string action = pid ? "Action PID" : "Action LQR";
     type.setString(action);
 
-
-    if(running_time && time > (running_time)) running = 0;
+    if (running_time && time > (running_time))
+      running = 0;
 
     if (time - last_update > 0.01F)
     {
@@ -305,7 +304,8 @@ int main(int argc,char* argv[])
     window.display();
   }
 
-  if (window.isOpen()) window.close();
+  if (window.isOpen())
+    window.close();
   close(fd);
   running = 0;
   std::cout << "Joining" << std::endl;
