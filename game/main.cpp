@@ -272,11 +272,19 @@ int main(int argc,char* argv[])
     double position = 320.0F + 100 * x(0);
     if (position + 50.0F > 640.0F)
     {
-      x(2) = -x(2);
+      // x(2) = -x(2);
+      position = 640.0F - 50.0F;
+      cart.setFillColor(sf::Color::Red);
     }
     else if (position - 50.0F < 0.0F)
     {
-      x(2) = -x(2);
+      // x(2) = -x(2);
+      position = 50.0F;
+      cart.setFillColor(sf::Color::Red);
+    }
+    else
+    {
+      cart.setFillColor(sf::Color::Black);
     }
 
     ptr->SetState(x);
