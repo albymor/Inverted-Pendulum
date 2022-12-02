@@ -67,7 +67,7 @@ int udpReceive()
   }
 
   struct timeval tv;
-  tv.tv_sec = 3;  // 30 Secs Timeout
+  tv.tv_sec = 5;  // 30 Secs Timeout
   tv.tv_usec = 0; // Not init'ing this can cause strange errors
 
   setsockopt(sock, SOL_SOCKET, SO_RCVTIMEO, &tv, sizeof(tv));
