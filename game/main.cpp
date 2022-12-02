@@ -264,7 +264,7 @@ int main(int argc,char* argv[])
       }
     }
 
-    double noise = 0; //((static_cast<double>(std::rand()) / (RAND_MAX/2)) - 1)*100;
+    double noise = ((static_cast<double>(std::rand()) / (RAND_MAX / 2)) - 1) * 100;
     ptr->Update(time, remote_u + noise);
 
     Eigen::VectorXd x = ptr->GetState();
